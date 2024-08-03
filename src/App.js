@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useState } from 'react'
+import Sidebar from './components/Sidebar'
+import Logo from './components/Logo'
+import "@fontsource/inter";
+import Player from './components/Player';
+import { PlayerContext } from './context/PlayerContext';
 
-function App() {
+
+const App = () => {
+
+  const {list,cover,track,setCover,setTrack} = useContext(PlayerContext)
+
+  setCover(track.cover)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    <div 
+    style={{background: `linear-gradient(to right,${cover} 10%, #000000 70%)`
+    }}
+     className='h-screen list  p-5 from-black'
+    >
+      <div className='h-[100%] flex'>
+        <Logo />
+        <Sidebar />
+        <Player />
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
